@@ -30,14 +30,13 @@ export class ArticleHeaderComponent implements OnChanges{
     this.delete.emit(this.item);
   }
 
-  cancelEdit(){
+  cancelModifyArticle(){
     this.item = Object.assign({},this.originItem);
     this.isEdit=false;
   }
 
-  doEdit(){
+  doModifArticle(){
     this.titleChange.emit(this.item);
     this.isEdit=false;
   }
 }
-//問取名

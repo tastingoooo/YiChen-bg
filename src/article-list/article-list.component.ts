@@ -30,8 +30,7 @@ export class ArticleListComponent implements OnInit {
   onRemoveArticle(article: Article) {
     try {
       //this.articleService.removeArticle(article);
-      this.articles.mutate((v)=>v.filter((v)=>v.id!=article.id));
-      console.log(this.articles());
+      this.articles.update((v)=>v.filter((v)=>v.id!=article.id));
     } catch (error) {
       console.log(error);
     }

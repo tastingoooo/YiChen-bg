@@ -3,7 +3,7 @@
     <a [href]="item.href">{{ item.title| lowercase | slice:0 }}</a>
 
     <input *ngIf="isEdit" size="70px" [(ngModel)]="item.title"
-    (keyup.escape)="cancelEdit()" (keyup.enter)="doEdit()">
+    (keyup.escape)="cancelModifyArticle()" (keyup.enter)="doModifArticle()">
   </h2>
   <button (click)="doDeleteArticle()">刪除文章</button>
   <button (click)="isEdit=true" *ngIf="!isEdit">編輯標題</button>
