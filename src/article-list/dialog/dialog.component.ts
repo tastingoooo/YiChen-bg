@@ -43,6 +43,7 @@ export class DialogComponent {
 
   doAddArticle() {
     this.add.emit(this.article);
+    this.visible = false;
   }
 
   setTitle(value: string) {

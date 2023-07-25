@@ -5,6 +5,7 @@ import { ArticleBodyComponent } from './article-body/article-body.component';
 import { ArticleService } from './article.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Article } from './article.interface';
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-article-list',
@@ -14,6 +15,7 @@ import { Article } from './article.interface';
     ArticleBodyComponent,
     ArticleHeaderComponent,
     HttpClientModule,
+    DialogComponent
   ],
   templateUrl: './article-list.component.html',
   styleUrls: ['./article-list.component.scss'],
@@ -47,8 +49,12 @@ export class ArticleListComponent implements OnInit {
   }
 
   onAddArticle(article: Article) {
-    article.id = this.articles().length + 1;
-    this.articles.mutate((v) => v.push(article));
-    this.articleService.addArticle(article);
+    try {
+      article.id = this.articles().length + 1;
+      this.articles.mutate((v) => v.push(article));
+      this.articleService.addArticle(article);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

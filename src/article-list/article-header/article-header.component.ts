@@ -9,12 +9,13 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Article } from '../article.interface';
-import { DialogComponent } from './dialog/dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-article-header',
   standalone: true,
-  imports: [CommonModule, FormsModule, DialogComponent],
+  imports: [CommonModule, FormsModule, DialogComponent, ButtonModule],
   templateUrl: './article-header.component.html',
   styleUrls: ['./article-header.component.scss'],
 })
@@ -23,7 +24,6 @@ export class ArticleHeaderComponent implements OnChanges {
 
   @Output() delete = new EventEmitter<Article>();
   @Output() titleChange = new EventEmitter<Article>();
-  @Output() add = new EventEmitter<Article>();
 
   isEdit: boolean = false;
   originItem!: Article;
@@ -47,9 +47,5 @@ export class ArticleHeaderComponent implements OnChanges {
   doModifArticle() {
     this.titleChange.emit(this.item);
     this.isEdit = false;
-  }
-
-  doAddArticle(article: Article) {
-    this.add.emit(article);
   }
 }

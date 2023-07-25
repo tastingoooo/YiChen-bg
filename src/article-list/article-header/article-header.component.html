@@ -10,9 +10,9 @@
       (keyup.enter)="doModifArticle()"
     />
   </h2>
-  <button (click)="doDeleteArticle()">刪除文章</button>
-  <button (click)="isEdit = true" *ngIf="!isEdit">編輯標題</button>
-  <button (click)="isEdit = false" *ngIf="isEdit">取消編輯</button>
+  <p-button (click)="doDeleteArticle()" styleClass="p-button-danger">刪除文章</p-button>
+  <p-button (click)="isEdit = true" *ngIf="!isEdit" styleClass="p-button-secondary">編輯標題</p-button>
+  <p-button (click)="isEdit = false" *ngIf="isEdit" styleClass="p-button-secondary">取消編輯</p-button>
   <div class="post-info clearfix">
     <span class="post-date"
       ><i class="glyphicon glyphicon-calendar"></i
@@ -28,8 +28,5 @@
       ><i class="glyphicon glyphicon-folder-close"></i
       ><a [href]="item['categoryLink']">{{ item.category }}</a></span
     >
-  </div>
-  <div>
-    <app-dialog (add)="doAddArticle($event)"> </app-dialog>
   </div>
 </header>
