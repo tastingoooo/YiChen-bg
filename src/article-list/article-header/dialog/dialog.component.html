@@ -1,0 +1,27 @@
+<button (click)="showDialog()">新增文章</button>
+<p-dialog header="Header" [(visible)]="visible" [style]="{ width: '50vw' }">
+  <div class="card flex flex-column justify-content-center">
+    <div class="flex">
+      <div class="p-inputgroup m-3">
+        <span class="p-inputgroup-addon"> </span>
+        <input #title pInputText placeholder="標題" (keyup)="setTitle(title.value)" />
+      </div>
+      <div class="p-inputgroup m-3">
+        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+        <input #author type="text" pInputText placeholder="作者" (keyup)="setAuthor(author.value)" />
+      </div>
+      <div class="p-inputgroup m-3">
+        <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
+        <input #category type="text" pInputText placeholder="分類" (keyup)="setCategory(category.value)" />
+      </div>
+    </div>
+    <div class="flex">
+      <span class="align-self-center p-float-label justify-content-center mt-4">
+        <textarea #summary id="float-input" rows="5" cols="50" pInputTextarea (keyup)="setSummary(summary.value)"></textarea>
+        <label for="float-input">內容</label>
+      </span>
+      <p-button label="提交" (click)="doAddArticle()"></p-button>
+      <p-button label="取消" (click)="cancelAddArticle()"></p-button>
+    </div>
+  </div>
+</p-dialog>

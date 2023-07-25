@@ -7,5 +7,4 @@ export interface Article {
   categoryLink: string;
   summary: string;
   title: string;
-  subtitle: string;
 };

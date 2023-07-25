@@ -4,43 +4,51 @@ import { CommonModule } from '@angular/common';
 import { ArticleBodyComponent } from './article-body/article-body.component';
 import { ArticleService } from './article.service';
 import { HttpClientModule } from '@angular/common/http';
-import { Article } from "./article.interface";
-
+import { Article } from './article.interface';
 
 @Component({
   selector: 'app-article-list',
   standalone: true,
-  imports: [CommonModule, ArticleBodyComponent, ArticleHeaderComponent, HttpClientModule],
+  imports: [
+    CommonModule,
+    ArticleBodyComponent,
+    ArticleHeaderComponent,
+    HttpClientModule,
+  ],
   templateUrl: './article-list.component.html',
   styleUrls: ['./article-list.component.scss'],
   providers: [ArticleService],
 })
 export class ArticleListComponent implements OnInit {
-
   public articleService: ArticleService = inject(ArticleService);
 
   articles = signal([] as Article[]);
-  constructor() {
-  }
+  constructor() {}
 
   async ngOnInit(): Promise<void> {
     this.articles.set(await this.articleService.getArticle());
   }
 
-  onRemoveArticle(article: Article) {
+  onDeleteArticle(article: Article) {
     try {
-      //this.articleService.removeArticle(article);
-      this.articles.update((v)=>v.filter((v)=>v.id!=article.id));
+      this.articleService.deleteArticle(article);
+      this.articles.update((v) => v.filter((v) => v.id != article.id));
     } catch (error) {
       console.log(error);
     }
   }
 
-  onModifyArticle(event: Article) {
+  onUpdateArticle(event: Article) {
     try {
-      this.articleService.modifyArticle(event);
+      this.articleService.updateArticle(event);
     } catch (error) {
       console.log(error);
     }
+  }
+
+  onAddArticle(article: Article) {
+    article.id = this.articles().length + 1;
+    this.articles.mutate((v) => v.push(article));
+    this.articleService.addArticle(article);
   }
 }
